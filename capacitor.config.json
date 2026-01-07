@@ -1,0 +1,6 @@
+{
+  "appId": "com.myrecorder.app",
+  "appName": "My Screen Recorder",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
