@@ -14,13 +14,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Install Dependencies
         run: npm install
@@ -30,9 +30,8 @@ jobs:
           npx cap add android
           npx cap sync
 
-      - name: Inject Permissions (The Magic Step)
+      - name: Inject Permissions
         run: |
-          # This inserts the required recording permissions into the Android Manifest automatically
           sed -i 's|</manifest>|<uses-permission android:name="android.permission.RECORD_AUDIO"/><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/><uses-permission android:name="android.permission.FOREGROUND_SERVICE"/><uses-permission android:name="android.permission.POST_NOTIFICATIONS"/></manifest>|' android/app/src/main/AndroidManifest.xml
 
       - name: Build APK (Debug)
